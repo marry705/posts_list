@@ -13,7 +13,6 @@ const Header = () => {
   }
 
   const onMouseLeaveButton = (target) => {
-    console.log('blur')
     target.classList.remove('active');
   }
 
@@ -21,29 +20,37 @@ const Header = () => {
     <div className='header'>
         <button className='theme-button' 
                 disabled={isLoading} 
-                onMouseOver={(e) => onMouseEnterButton(e.target)}
+                onMouseEnter={(e) => onMouseEnterButton(e.target)}
+                onTouchStart={(e) => onMouseEnterButton(e.target)}
                 onMouseLeave={(e) => onMouseLeaveButton(e.target)}
+                onTouchEnd={(e) => onMouseLeaveButton(e.target)}
                 onClick={() => dispatch(updateTheme('frontend'))}>
               Frontend
         </button>
         <button className='theme-button' 
                 disabled={isLoading} 
-                onMouseOver={(e) => onMouseEnterButton(e.target)}
+                onMouseEnter={(e) => onMouseEnterButton(e.target)}
+                onTouchStart={(e) => onMouseEnterButton(e.target)}
                 onMouseLeave={(e) => onMouseLeaveButton(e.target)}
+                onTouchEnd={(e) => onMouseLeaveButton(e.target)}
                 onClick={() => dispatch(updateTheme('reactjs'))}>
               ReactJS
         </button>
         <button className='theme-button' 
                 disabled={isLoading} 
-                onMouseOver={(e) => onMouseEnterButton(e.target)}
+                onMouseEnter={(e) => onMouseEnterButton(e.target)}
+                onTouchStart={(e) => onMouseEnterButton(e.target)}
                 onMouseLeave={(e) => onMouseLeaveButton(e.target)}
+                onTouchEnd={(e) => onMouseLeaveButton(e.target)}
                 onClick={() => dispatch(updateTheme('vuejs'))}>
               VueJS
         </button>
         <button className='theme-button' 
                 disabled={isLoading} 
-                onMouseOver={(e) => onMouseEnterButton(e.target)}
+                onMouseEnter={(e) => onMouseEnterButton(e.target)}
+                onTouchStart={(e) => onMouseEnterButton(e.target)}
                 onMouseLeave={(e) => onMouseLeaveButton(e.target)}
+                onTouchEnd={(e) => onMouseLeaveButton(e.target)}
                 onClick={() => dispatch(updateTheme('angular'))}>
               Angular
         </button>

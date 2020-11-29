@@ -12,14 +12,22 @@ const PostsContainer = () => {
     const { isLoading, errorMessage, posts } = useSelector(state => state.posts);
     const dispatch = useDispatch();
 
-    console.log('render PostsCont');
-
     const PostRow = ({ index, key, style }) => {
+        let content;
+
+        if (index === posts.length) {
+        content = (isLoading) ? <div className='load-ellipsis'><div></div><div></div><div></div><div></div></div> : (errorMessage) ? <p>{errorMessage}</p> : null;
+        } else {
+          content = 
+            <div className='row-post'>
+                <button className={ posts[index].isFavorite ? 'fan-button favorite' : 'fan-button' } onClick={() => dispatch(changePostStatus(posts[index].id))}></button>
+                <button className='remove-button' onClick={() => dispatch(removePost(posts[index].id))}></button>
+                <a href={ posts[index].data.url } target="_blank" rel="noreferrer">{ posts[index].data.title }</a>
+            </div>;
+        }
         return (
             <div key={key} style={style} className='row'>
-                <button className={ posts[index].isFavorite ? 'fan-button favorite' : 'fan-button' } onClick={() => dispatch(changePostStatus(posts[index].id))}></button>
-                <button onClick={() => dispatch(removePost(posts[index].id))}></button>
-                <a href={posts[index].data.url} target="_blank" rel="noreferrer">{posts[index].data.title}</a>
+                {content}
             </div>
         );
     };
@@ -28,11 +36,11 @@ const PostsContainer = () => {
         <div className='posts-wrapper'>
             <AutoSizer>
                 {({ height, width } ) => (
-                    <List 
+                    <List
                         width={width}
                         height={height}
-                        rowHeight={40}
-                        rowCount={posts.length}
+                        rowHeight={65}
+                        rowCount={posts.length+1}
                         rowRenderer={PostRow}
                         data={posts}/> 
                 )}
