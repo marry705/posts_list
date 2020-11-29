@@ -1,0 +1,11 @@
+.button-wrapper{
+    display: flex;
+    width: 100%;
+}
+.state-button{
+    width: 100px;
+    height: 35px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    background-color: var(--color-lighter);
+}

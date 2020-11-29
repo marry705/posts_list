@@ -2,10 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTheme } from '../../redux/actions';
 
-import './Header.css'
+import './Header.css';
 
 const Header = () => {
-  const { isLoading } = useSelector(state => state.posts);
+  const { isLoading } = useSelector(state => state.theme);
   const dispatch = useDispatch();
   
   const onMouseEnterButton = (target) => {

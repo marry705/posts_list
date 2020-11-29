@@ -3,7 +3,7 @@ import { REQUEST } from '../constants/constants';
 import { requestData, requestDataFinished, addData, showErrorMessage, clearErrorMessage } from '../redux/actions';
 import { getRequest } from '../api/getRequest';
 
-const getTheme = state => state.posts;
+const getTheme = state => state.theme;
 
 function* requestWorker() {
   let request = yield select(getTheme);

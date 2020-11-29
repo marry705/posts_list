@@ -9,7 +9,8 @@ import 'react-virtualized/styles.css';
 import './PostsContainer.css';
 
 const PostsContainer = () => {
-    const { isLoading, errorMessage, posts } = useSelector(state => state.posts);
+    const { posts } = useSelector(state => state.posts.present);
+    const { isLoading, errorMessage, } = useSelector(state => state.theme);
     const dispatch = useDispatch();
 
     const PostRow = ({ index, key, style }) => {
