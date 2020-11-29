@@ -6,10 +6,6 @@ export const getLocalStorage = (key) => {
 
 export const setLocalStorage = (key, value) => {
   window.localStorage.setItem(key, value);
-}; 
-
-export const clearLocalStorage = () => {
-  window.localStorage.clear();
 };
 
 export const randomInteger = (max) => {

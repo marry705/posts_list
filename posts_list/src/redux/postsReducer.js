@@ -10,8 +10,6 @@ const initialState = {
     error: ''
 };
 
-const new_posts = [];
-
 export const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case REQUEST.UPDATE_THEME:
@@ -26,28 +24,25 @@ export const postsReducer = (state = initialState, action) => {
         case REQUEST.ADD_NEW_POST:
           state['posts'].push({ data: action.payload, id: action.payload.id, isFavorite: false });
           setLocalStorage('posts', JSON.stringify(state.posts));
+
           return state;
 
         case REQUEST.REMOVE_POST:
-          new_posts = state.posts.filter( post => post.id !== action.payload);
-          setLocalStorage('posts', JSON.stringify(new_posts));
-          return {
-            ...state, 
-            posts: new_posts
-          };
+          posts = state['posts'].filter( post => post.id !== action.payload);
+          setLocalStorage('posts', JSON.stringify(posts));
+
+          return {...state, posts: posts};
 
         case REQUEST.CHANGE_POST_STATUS:
-          new_posts = state.posts.map( post => {
+          posts = state['posts'].map( post => {
             if (post.id === action.payload) {
               post.isFavorite = !post.isFavorite;
             }
             return post;
           })
-          setLocalStorage('posts', JSON.stringify(new_posts));
-          return {
-            ...state, 
-            posts: new_posts
-          };
+          setLocalStorage('posts', JSON.stringify(posts));
+
+          return {...state, posts: posts};
 
         case REQUEST.ADD_ERROR_MESSAGE:
           return {...state, error: action.payload}
