@@ -4,7 +4,7 @@ import { getLocalStorage, setLocalStorage } from './actions';
 let posts = getLocalStorage('posts') ? JSON.parse(getLocalStorage('posts')) : [];
 
 const initialState = {
-    posts:  posts
+    posts: posts
 };
 
 const postsReducer = (state = initialState, action) => {

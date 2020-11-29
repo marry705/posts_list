@@ -1,28 +1,36 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-// import { ActionCreators } from 'redux-undo';
-import { undo, redo } from '../../redux/actions';
+import { connect } from 'react-redux';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import './ButtonPanel.css';
 
-const ButtonPanel = () => {
-  const { isLoading } = useSelector(state => state.theme);
-  const dispatch = useDispatch();
-
+let ButtonPanel = ({ canUndo, canRedo, onUndo, onRedo }) => {
   return (
     <div className='button-wrapper'>
         <button className='state-button' 
-                disabled={isLoading} 
-                onClick={() => dispatch(undo())}>
+                disabled={!canUndo} 
+                onClick={onUndo}>
               UNDO
         </button>
         <button className='state-button' 
-                disabled={isLoading} 
-                onClick={() => dispatch(redo())}>
+                disabled={!canRedo} 
+                onClick={onRedo}>
               REDO
         </button>
     </div>
   );
 };
+
+const mapStateToProps = (state) => ({
+  canUndo: state.posts.past.length > 0,
+  canRedo: state.posts.future.length > 0
+});
+
+const mapDispatchToProps = ({
+  onUndo: UndoActionCreators.undo,
+  onRedo: UndoActionCreators.redo
+});
+
+ButtonPanel = connect( mapStateToProps, mapDispatchToProps )(ButtonPanel);
 
 export default ButtonPanel;

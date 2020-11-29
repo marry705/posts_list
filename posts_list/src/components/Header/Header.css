@@ -12,11 +12,11 @@
     height: 35px;
     font-size: 16px;
     background-color: var(--color-light);
-    /* animation: button-animation 3900ms linear alternate-reverse infinite;
+    animation: button-animation 3900ms linear alternate-reverse infinite;
     -o-animation: button-animation 3900ms linear alternate-reverse infinite;
     -ms-animation: button-animation 3900ms linear alternate-reverse infinite;
     -webkit-animation: button-animation 3900ms linear alternate-reverse infinite;
-    -moz-animation: button-animation 3900ms linear alternate-reverse infinite; */
+    -moz-animation: button-animation 3900ms linear alternate-reverse infinite;
 }
 .theme-button.active{
     background-color: var(--color-hover);

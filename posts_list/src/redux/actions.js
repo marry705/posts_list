@@ -7,19 +7,7 @@ export const getLocalStorage = (key) => {
 export const setLocalStorage = (key, value) => {
   window.localStorage.setItem(key, value);
 };
-//
-export const undo = () => {
-  return {
-    type: STATE.POST_UNDO
-  }
-};
-  
-export const redo = () => {
-  return {
-    type: STATE.POST_REDO
-  }
-};
-//
+
 export const randomInteger = (max) => {
   let rand = Math.random() * (max + 1);
   return Math.floor(rand);

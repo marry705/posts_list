@@ -5,7 +5,7 @@ import { updateTheme } from '../../redux/actions';
 import './Header.css';
 
 const Header = () => {
-  const { isLoading } = useSelector(state => state.theme);
+  const { isLoading } = useSelector(state => state.request);
   const dispatch = useDispatch();
   
   const onMouseEnterButton = (target) => {

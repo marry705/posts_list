@@ -6,7 +6,7 @@ const initialState = {
     error: ''
 };
 
-const themeReducer = (state = initialState, action) => {
+const requestReducer = (state = initialState, action) => {
     switch (action.type) {
         case REQUEST.UPDATE_THEME:
           return {...state, theme: action.payload}
@@ -27,4 +27,4 @@ const themeReducer = (state = initialState, action) => {
     }
 };
 
-export default themeReducer;
+export default requestReducer;

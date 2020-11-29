@@ -10,14 +10,14 @@ import './PostsContainer.css';
 
 const PostsContainer = () => {
     const { posts } = useSelector(state => state.posts.present);
-    const { isLoading, errorMessage, } = useSelector(state => state.theme);
+    const { isLoading, errorMessage } = useSelector(state => state.request);
     const dispatch = useDispatch();
 
     const PostRow = ({ index, key, style }) => {
         let content;
 
         if (index === posts.length) {
-        content = (isLoading) ? <div className='load-ellipsis'><div></div><div></div><div></div><div></div></div> : (errorMessage) ? <p>{errorMessage}</p> : null;
+            content = (isLoading) ? <div className='load-ellipsis'><div></div><div></div><div></div><div></div></div> : (errorMessage) ? <p>{errorMessage}</p> : null;
         } else {
           content = 
             <div className='row-post'>
