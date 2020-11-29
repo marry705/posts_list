@@ -9,11 +9,13 @@ const Header = () => {
   const dispatch = useDispatch();
   
   const onMouseEnterButton = (target) => {
+    target.classList.remove('no-active');
     target.classList.add('active');
   }
 
   const onMouseLeaveButton = (target) => {
     target.classList.remove('active');
+    target.classList.add('no-active');
   }
 
   return (

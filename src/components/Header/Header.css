@@ -22,6 +22,9 @@
     background-color: var(--color-hover);
     animation-play-state: paused;
 }
+.theme-button.no-active{
+    animation-play-state: running;
+}
 .theme-button:nth-child(2){
     top: 40px;
 }
