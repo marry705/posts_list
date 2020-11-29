@@ -13,13 +13,26 @@ export const postsReducer = (state = initialState, action) => {
           return {...state, theme: action.payload}
   
         case REQUEST.REQUESTED_DATA:
-          return {...state, isLoading: true, error: '', posts: []}
+          return {...state, isLoading: true, error: ''}
+        
+        case REQUEST.REQUEST_FINISHED:
+          return {...state, isLoading: false}
   
-        case REQUEST.REQUEST_DATA_SUCCEEDED:
-          return {...state, isLoading: false, posts: action.payload}
+        case REQUEST.ADD_NEW_POST:
+          state['posts'].push({ data: action.payload, id: action.payload.id, isFavorite: false });
+          return state;
 
-        case REQUEST.REQUEST_DATA_FAILED:
-          return {...state, isLoggedIn: false }
+        case REQUEST.REMOVE_POST:
+          state['posts'].filter( post => post.id !== action.payload );
+          return state;
+
+        case REQUEST.CHANGE_POST_STATUS:
+          state['posts'].map( post => {
+            if (post.id === action.payload) {
+              post.isFavorite = !post.isFavorite;
+            }
+          });
+          return state;
 
         case REQUEST.ADD_ERROR_MESSAGE:
           return {...state, error: action.payload}

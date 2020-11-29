@@ -1,50 +1,44 @@
 import React from 'react';
-import { List } from 'react-virtualized';
 import { useSelector, useDispatch } from 'react-redux';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import { List } from 'react-virtualized';
 
-import { Layout, WhenError, WhenLoading, WhenNoAction } from '../Layout/Layout';
+import { changePostStatus, removePost } from '../../redux/actions';
 
-const ProfileContainer = () => {
+import 'react-virtualized/styles.css';
+import './PostsContainer.css';
+
+const PostsContainer = () => {
     const { isLoading, errorMessage, posts } = useSelector(state => state.posts);
     const dispatch = useDispatch();
-      
-    function rowRenderer({
-        key, 
-        index,
-        isScrolling,
-        isVisible,
-        style,
-    }) {
+
+    console.log('render PostsCont');
+
+    const PostRow = ({ index, key, style }) => {
         return (
-          <div key={key} style={style}>
-            {posts[index]}
-          </div>
+            <div key={key} style={style} className='row'>
+                <button className={ posts[index].isFavorite ? 'fan-button favorite' : 'fan-button' } onClick={() => dispatch(changePostStatus(posts[index].id))}></button>
+                <button onClick={() => dispatch(removePost(posts[index].id))}></button>
+                <a href={posts[index].data.url} target="_blank" rel="noreferrer">{posts[index].data.title}</a>
+            </div>
         );
-    }
+    };
 
     return (
-        <Layout ifLoading={isLoading} ifError={errorMessage}>               
-            <WhenLoading>   
-            <div className='main-wrapper wrapper'>
-                <h1>Loading</h1>
-            </div>        
-            </WhenLoading>  
-            <WhenError> 
-            <div className='main-wrapper wrapper'>
-                <p>{errorMessage}</p>
-            </div>            
-            </WhenError>  
-            <WhenNoAction>
-                <List
-                    width={300}
-                    height={300}
-                    rowCount={10}
-                    rowHeight={20}
-                    rowRenderer={rowRenderer}
-                />
-            </WhenNoAction>
-        </Layout>
+        <div className='posts-wrapper'>
+            <AutoSizer>
+                {({ height, width } ) => (
+                    <List 
+                        width={width}
+                        height={height}
+                        rowHeight={40}
+                        rowCount={posts.length}
+                        rowRenderer={PostRow}
+                        data={posts}/> 
+                )}
+            </AutoSizer>
+        </div>
     );
 };
 
-export default ProfileContainer;
+export default PostsContainer;

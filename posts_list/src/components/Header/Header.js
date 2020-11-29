@@ -1,18 +1,54 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateTheme } from '../../redux/actions';
 
-const ProfileContainer = () => {
+import './Header.css'
+
+const Header = () => {
+  const { isLoading } = useSelector(state => state.posts);
   const dispatch = useDispatch();
+  
+  const onMouseEnterButton = (target) => {
+    target.classList.add('active');
+  }
+
+  const onMouseLeaveButton = (target) => {
+    console.log('blur')
+    target.classList.remove('active');
+  }
 
   return (
-    <div>
-        <button onClick={() => dispatch(updateTheme('frontend'))}>Frontend</button>
-        <button onClick={() => dispatch(updateTheme('reactjs'))}>ReactJS</button>
-        <button onClick={() => dispatch(updateTheme('vuejs'))}>VueJS</button>
-        <button onClick={() => dispatch(updateTheme('angular'))}>Angular</button>
+    <div className='header'>
+        <button className='theme-button' 
+                disabled={isLoading} 
+                onMouseOver={(e) => onMouseEnterButton(e.target)}
+                onMouseLeave={(e) => onMouseLeaveButton(e.target)}
+                onClick={() => dispatch(updateTheme('frontend'))}>
+              Frontend
+        </button>
+        <button className='theme-button' 
+                disabled={isLoading} 
+                onMouseOver={(e) => onMouseEnterButton(e.target)}
+                onMouseLeave={(e) => onMouseLeaveButton(e.target)}
+                onClick={() => dispatch(updateTheme('reactjs'))}>
+              ReactJS
+        </button>
+        <button className='theme-button' 
+                disabled={isLoading} 
+                onMouseOver={(e) => onMouseEnterButton(e.target)}
+                onMouseLeave={(e) => onMouseLeaveButton(e.target)}
+                onClick={() => dispatch(updateTheme('vuejs'))}>
+              VueJS
+        </button>
+        <button className='theme-button' 
+                disabled={isLoading} 
+                onMouseOver={(e) => onMouseEnterButton(e.target)}
+                onMouseLeave={(e) => onMouseLeaveButton(e.target)}
+                onClick={() => dispatch(updateTheme('angular'))}>
+              Angular
+        </button>
     </div>
   );
 };
 
-export default ProfileContainer;
+export default Header;
