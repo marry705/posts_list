@@ -10,7 +10,7 @@ const initialState = {
 const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case POST.ADD_NEW_POST:
-          posts = state['posts'].concat([{ data: action.payload, id: action.payload.id, isFavorite: false }]);
+          posts = state['posts'].concat([{ data: action.payload, id: action.payload.id + action.payload.subreddit_id, isFavorite: false }]);
           setLocalStorage('posts', JSON.stringify(posts));
           return {...state, posts: posts};
 
@@ -22,7 +22,7 @@ const postsReducer = (state = initialState, action) => {
         case POST.CHANGE_POST_STATUS:
           posts = state['posts'].map( post => {
             if (post.id === action.payload) {
-              post.isFavorite = !post.isFavorite;
+              return { data: post.data, id: post.id, isFavorite: !post.isFavorite };
             }
             return post;
           })
