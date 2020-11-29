@@ -10,9 +10,9 @@ const initialState = {
 const postsReducer = (state = initialState, action) => {
     switch (action.type) {
         case POST.ADD_NEW_POST:
-          state['posts'].push({ data: action.payload, id: action.payload.id, isFavorite: false });
-          setLocalStorage('posts', JSON.stringify(state.posts));
-          return state;
+          posts = state['posts'].concat([{ data: action.payload, id: action.payload.id, isFavorite: false }]);
+          setLocalStorage('posts', JSON.stringify(posts));
+          return {...state, posts: posts};
 
         case POST.REMOVE_POST:
           posts = state['posts'].filter( post => post.id !== action.payload);

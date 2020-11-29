@@ -42,8 +42,7 @@ const PostsContainer = () => {
                         height={height}
                         rowHeight={65}
                         rowCount={posts.length+1}
-                        rowRenderer={PostRow}
-                        data={posts}/> 
+                        rowRenderer={PostRow}/> 
                 )}
             </AutoSizer>
         </div>
