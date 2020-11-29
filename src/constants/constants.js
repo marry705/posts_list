@@ -12,14 +12,9 @@ const POST = {
     CHANGE_POST_STATUS: 'CHANGE_POST_STATUS'
 };
 
-const STATE = {
-    POST_UNDO: 'POST_UNDO',
-    POST_REDO: 'POST_REDO'
-};
-
 const CONST = {
     SERVER_HOST: 'https://www.reddit.com/r',
     API_KEY: 'ac45bb49a0mshca48265691cce65p125ba2jsn25a988169c83'
 };
   
-export { REQUEST, POST, CONST, STATE };
+export { REQUEST, POST, CONST };

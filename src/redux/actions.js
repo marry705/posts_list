@@ -1,4 +1,4 @@
-import { REQUEST, STATE, POST } from '../constants/constants';
+import { REQUEST, POST } from '../constants/constants';
 
 export const getLocalStorage = (key) => {
   return window.localStorage.getItem(key);
